@@ -1,8 +1,8 @@
 {
-Version   11.5
+Version   11.6
 Copyright (c) 1995-2008 by L. David Baldwin
 Copyright (c) 2008-2010 by HtmlViewer Team
-Copyright (c) 2011-2014 by Bernd Gabriel
+Copyright (c) 2011-2015 by Bernd Gabriel
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -404,7 +404,12 @@ const
 // (see http://www.w3.org/TR/2010/WD-CSS2-20101207/syndata.html#value-def-length for details).
   HTMLViewerPixelsPerInch = 96.0; // fixed assumption in CSS 2.1 as lots of designs rely on it.
   HTMLViewerPointsPerInch = 72.0;
-  HTMLViewerPointsPerPixel = HTMLViewerPointsPerInch / HTMLViewerPixelsPerInch;
+  //BG, 16.06.2015: Issue 399: StyleTypes.pas: Code improvement for C++Builder
+  // HTMLViewerPointsPerPixel = HTMLViewerPointsPerInch / HTMLViewerPixelsPerInch;
+  // produces idiotic "static const System::Extended HTMLViewerPointsPerPixel = 7.500000E-01;"
+  // in StyleTypes.hpp which then produces "unused" warnings.
+  // The following declaration produces just another #define:
+  HTMLViewerPointsPerPixel = 0.75; // HTMLViewerPointsPerInch / HTMLViewerPixelsPerInch;
 
 type
   ThtLengthUnitInfo = record

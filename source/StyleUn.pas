@@ -1,7 +1,7 @@
 {
-Version   11.5
+Version   11.6
 Copyright (c) 1995-2008 by L. David Baldwin,
-Copyright (c) 2008-2014 by HtmlViewer Team
+Copyright (c) 2008-2015 by HtmlViewer Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -3500,8 +3500,10 @@ begin
 end;
 
 const
-  NumColors = 177;
-  Colors: array[1..NumColors] of ThtString = ('transparent',
+  NumColors = 178;
+  Colors: array[1..NumColors] of ThtString = (
+    'none', 'transparent',
+
     'black', 'maroon', 'green', 'olive', 'navy', 'purple', 'teal', 'gray',
     'silver', 'red', 'lime', 'yellow', 'blue', 'fuchsia', 'aqua', 'white',
     'aliceblue', 'antiquewhite', 'aquamarine', 'azure', 'beige',
@@ -3539,7 +3541,7 @@ const
     'threeddarkshadow', 'threedlightshadow', 'infotext', 'infobackground', 'scrollbar',
     'threedface', 'threedhighlight', 'threedshadow');
 
-  ColorValues: array[1..NumColors] of TColor = (clNone,
+  ColorValues: array[1..NumColors] of TColor = (clNone, clNone,
     clBLACK, clMAROON, clGREEN, clOLIVE, clNAVY, clPURPLE, clTEAL, clGRAY,
     clSILVER, clRED, clLIME, clYELLOW, clBLUE, clFUCHSIA, clAQUA, clWHITE,
     $FFF8F0, $D7EBFA, $D4FF7F, $FFFFF0, $DCF5F5,

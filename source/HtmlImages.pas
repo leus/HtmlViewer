@@ -1,7 +1,7 @@
 {
-Version   11.5
+Version   11.6
 Copyright (c) 1995-2008 by L. David Baldwin,
-Copyright (c) 2008-2014 by HtmlViewer Team
+Copyright (c) 2008-2015 by HtmlViewer Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
@@ -609,7 +609,9 @@ begin
     ImageFormat := KindOfImage(Stream);
 
 {$ifndef NoGDIPlus}
-    if not (ImageFormat in [itGif]) then
+    if ImageFormat in [itGif] then
+    else if (ImageFormat in [itBmp]) {and (Transparent <> NotTransp)} then
+    else
       try
         Result := LoadGpImage;
       except
@@ -630,7 +632,7 @@ begin
     if Result = nil then
       if Bitmap <> nil then
       begin
-        if Transparent = LLCorner then
+        //if Transparent = LLCorner then
           Mask := GetImageMask(Bitmap, False, 0);
         Bitmap := ConvertImage(Bitmap);
         Result := ThtBitmapImage.Create(Bitmap, Mask, Transparent);
@@ -1896,7 +1898,7 @@ procedure ThtBitmapImage.Draw(Canvas: TCanvas; X, Y, W, H: Integer);
 begin
   if Bitmap = nil then
     exit;
-  if Mask = nil then
+  if (Mask = nil) or (Transp = NotTransp) then
   begin
 {$IFDEF HalfToneStretching}
     SetStretchBltMode(Canvas.Handle, HALFTONE);

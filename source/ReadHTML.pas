@@ -1,7 +1,7 @@
 {
-Version   11.5
+Version   11.6
 Copyright (c) 1995-2008 by L. David Baldwin,
-Copyright (c) 2008-2014 by HtmlViewer Team
+Copyright (c) 2008-2015 by HtmlViewer Team
 
 *********************************************************
 *                                                       *
@@ -3199,7 +3199,7 @@ begin
         begin {don't create a section for a single space}
           if (LCToken.Count >= 1) and (LCToken.S <> SpcChar) then
           begin
-            Section := TSection.Create(SectionList, nil, PropStack.Last, CurrentUrlTarget, True);
+            Section := TSection.Create(SectionList, Attributes, PropStack.Last, CurrentUrlTarget, True);
             Section.AddTokenObj(LCToken);
           end;
         end
